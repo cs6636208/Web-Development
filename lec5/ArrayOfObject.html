@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      let student = [
+        // ประกาศตัวแปรอาร์เรย์
+        // สร้าง object แรก
+        {
+          id: 62001,
+          thainame: "มานะ",
+          fullname: "mana",
+        },
+        {
+          // สร้าง object ที่สอง
+          id: 62002,
+          fullname: "manee",
+          say: function (name) {
+            return "Hello " + name;
+          },
+        },
+      ];
+      console.log(student[0].fullname); // เข้าถึง object แรก property fullname
+      console.log(student[1].id); // เข้าถึงobject ที่สอง property id
+      student[1].fullname = "phiti"; // กำหนดค่าใหม่
+      console.log(student[1].fullname);
+      console.log(student[1].say("today is beautiful..."));
+      let score = 65;
+      if (score >= 80) console.log("A");
+      else if (score >= 70) console.log("B");
+      else if (score >= 60) console.log("C");
+      else if (score >= 50) console.log("D");
+      else console.log("F");
+      let cars = ["Ferrari", "Benz", "BMW", "Mazda", "Toyota", "Honda"];
+      for (let i = 0; i < cars.length; i++) {
+        console.log(cars[i]);
+      }
+      let carss = ["Ferrari", "Benz", "BMW", "Mazda", "Toyota", "Honda"];
+      for (let i in cars) {
+        console.log(cars[i]);
+      }
+    </script>
+  </head>
+</html>

@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox Examples</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      .example-block {
+        margin: 30px 0;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #f8f9fa;
+      }
+
+      .code-container {
+        display: flex;
+        gap: 20px;
+        margin: 15px 0;
+      }
+
+      .code-block {
+        flex: 1;
+        background: #2d2d2d;
+        color: #fff;
+        padding: 15px;
+        border-radius: 6px;
+        font-family: monospace;
+        position: relative;
+      }
+
+      .code-label {
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        background: #666;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+
+      .result-block {
+        background: white;
+        padding: 15px;
+        border-radius: 6px;
+        margin: 10px 0;
+        border: 1px solid #e9ecef;
+      }
+
+      /* Flex Direction Example */
+      #flex-direction .container {
+        display: flex;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+      }
+
+      #flex-direction .item {
+        padding: 10px;
+        background: #4caf50;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+      }
+
+      #flex-direction .row {
+        flex-direction: row;
+      }
+
+      #flex-direction .row-reverse {
+        flex-direction: row-reverse;
+      }
+
+      #flex-direction .column {
+        flex-direction: column;
+      }
+
+      #flex-direction .column-reverse {
+        flex-direction: column-reverse;
+      }
+
+      /* Justify Content Example */
+      #justify-content .container {
+        display: flex;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+        min-height: 100px;
+      }
+
+      #justify-content .item {
+        padding: 10px;
+        background: #2196f3;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+        width: 80px;
+      }
+
+      #justify-content .flex-start {
+        justify-content: flex-start;
+      }
+
+      #justify-content .flex-end {
+        justify-content: flex-end;
+      }
+
+      #justify-content .center {
+        justify-content: center;
+      }
+
+      #justify-content .space-between {
+        justify-content: space-between;
+      }
+
+      #justify-content .space-around {
+        justify-content: space-around;
+      }
+
+      #justify-content .space-evenly {
+        justify-content: space-evenly;
+      }
+
+      /* Align Items Example */
+      #align-items .container {
+        display: flex;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+        height: 150px;
+      }
+
+      #align-items .item {
+        padding: 10px;
+        background: #9c27b0;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+        width: 80px;
+      }
+
+      #align-items .item.tall {
+        height: 80px;
+      }
+
+      #align-items .flex-start {
+        align-items: flex-start;
+      }
+
+      #align-items .flex-end {
+        align-items: flex-end;
+      }
+
+      #align-items .center {
+        align-items: center;
+      }
+
+      #align-items .stretch {
+        align-items: stretch;
+      }
+
+      #align-items .baseline .item {
+        font-size: 20px;
+        padding: 20px;
+      }
+
+      #align-items .baseline .item:nth-child(2) {
+        font-size: 40px;
+        padding: 10px;
+      }
+
+      #align-items .baseline .item:nth-child(3) {
+        font-size: 30px;
+        padding: 30px;
+      }
+
+      /* Flex Wrap Example */
+      #flex-wrap .container {
+        display: flex;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+        width: 300px;
+      }
+
+      #flex-wrap .item {
+        padding: 10px;
+        background: #ff5722;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+        width: 80px;
+      }
+
+      #flex-wrap .nowrap {
+        flex-wrap: nowrap;
+      }
+
+      #flex-wrap .wrap {
+        flex-wrap: wrap;
+      }
+
+      #flex-wrap .wrap-reverse {
+        flex-wrap: wrap-reverse;
+      }
+
+      /* Flex Flow Example */
+      #flex-flow .container {
+        display: flex;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+        width: 300px;
+      }
+
+      #flex-flow .item {
+        padding: 10px;
+        background: #795548;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+        width: 80px;
+      }
+
+      #flex-flow .row-wrap {
+        flex-flow: row wrap;
+      }
+
+      #flex-flow .column-wrap {
+        flex-flow: column wrap;
+        height: 200px;
+      }
+
+      /* Align Content Example */
+      #align-content .container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+        height: 250px;
+        width: 300px;
+      }
+
+      #align-content .item {
+        padding: 10px;
+        background: #607d8b;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+        width: 80px;
+      }
+
+      #align-content .flex-start {
+        align-content: flex-start;
+      }
+
+      #align-content .flex-end {
+        align-content: flex-end;
+      }
+
+      #align-content .center {
+        align-content: center;
+      }
+
+      #align-content .space-between {
+        align-content: space-between;
+      }
+
+      #align-content .space-around {
+        align-content: space-around;
+      }
+
+      /* Flex Grow Example */
+      #flex-grow .container {
+        display: flex;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+      }
+
+      #flex-grow .item {
+        padding: 10px;
+        background: #009688;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+      }
+
+      #flex-grow .grow-1 {
+        flex-grow: 1;
+      }
+
+      #flex-grow .grow-2 {
+        flex-grow: 2;
+      }
+
+      #flex-grow .grow-3 {
+        flex-grow: 3;
+      }
+
+      /* Flex Shrink Example */
+      #flex-shrink .container {
+        display: flex;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+        width: 500px;
+      }
+
+      #flex-shrink .item {
+        padding: 10px;
+        background: #3f51b5;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+        width: 200px;
+      }
+
+      #flex-shrink .shrink-1 {
+        flex-shrink: 1;
+      }
+
+      #flex-shrink .shrink-2 {
+        flex-shrink: 2;
+      }
+
+      #flex-shrink .shrink-0 {
+        flex-shrink: 0;
+      }
+
+      /* Flex Basis Example */
+      #flex-basis .container {
+        display: flex;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+      }
+
+      #flex-basis .item {
+        padding: 10px;
+        background: #e91e63;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+      }
+
+      #flex-basis .basis-100 {
+        flex-basis: 100px;
+      }
+
+      #flex-basis .basis-200 {
+        flex-basis: 200px;
+      }
+
+      #flex-basis .basis-auto {
+        flex-basis: auto;
+      }
+
+      /* Order Example */
+      #order .container {
+        display: flex;
+        margin: 10px 0;
+        background: #e9ecef;
+        padding: 10px;
+      }
+
+      #order .item {
+        padding: 10px;
+        background: #673ab7;
+        color: white;
+        margin: 5px;
+        text-align: center;
+        border-radius: 4px;
+        width: 80px;
+      }
+
+      #order .order-3 {
+        order: 3;
+      }
+
+      #order .order-1 {
+        order: 1;
+      }
+
+      #order .order-2 {
+        order: 2;
+      }
+
+      code {
+        color: #f8f9fa;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Flexbox Examples</h1>
+
+    <!-- Flex Direction -->
+    <div id="flex-direction" class="example-block">
+      <h2>1. Flex Direction</h2>
+      <div class="code-container">
+        <div class="code-block">
+          <div class="code-label">CSS</div>
+          <code>
+            .container {
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;flex-direction: row | row-reverse |
+            column | column-reverse; <br />}
+          </code>
+        </div>
+        <div class="code-block">
+          <div class="code-label">HTML</div>
+          <code>
+            &lt;div class="container">
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">1&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">2&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">3&lt;/div>
+            <br />&lt;/div>
+          </code>
+        </div>
+      </div>
+      <div class="result-block">
+        <h3>row (default)</h3>
+        <div class="container row">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>row-reverse</h3>
+        <div class="container row-reverse">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>column</h3>
+        <div class="container column">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>column-reverse</h3>
+        <div class="container column-reverse">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Justify Content -->
+    <div id="justify-content" class="example-block">
+      <h2>2. Justify Content</h2>
+      <div class="code-container">
+        <div class="code-block">
+          <div class="code-label">CSS</div>
+          <code>
+            .container {
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;justify-content: flex-start | flex-end
+            | center | space-between | space-around | space-evenly; <br />}
+          </code>
+        </div>
+        <div class="code-block">
+          <div class="code-label">HTML</div>
+          <code>
+            &lt;div class="container">
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">1&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">2&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">3&lt;/div>
+            <br />&lt;/div>
+          </code>
+        </div>
+      </div>
+      <div class="result-block">
+        <h3>flex-start (default)</h3>
+        <div class="container flex-start">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>flex-end</h3>
+        <div class="container flex-end">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>center</h3>
+        <div class="container center">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>space-between</h3>
+        <div class="container space-between">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>space-around</h3>
+        <div class="container space-around">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>space-evenly</h3>
+        <div class="container space-evenly">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Align Items -->
+    <div id="align-items" class="example-block">
+      <h2>3. Align Items</h2>
+      <div class="code-container">
+        <div class="code-block">
+          <div class="code-label">CSS</div>
+          <code>
+            .container {
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;align-items: flex-start | flex-end |
+            center | stretch | baseline; <br />}
+          </code>
+        </div>
+        <div class="code-block">
+          <div class="code-label">HTML</div>
+          <code>
+            &lt;div class="container">
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">1&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item tall">2&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">3&lt;/div>
+            <br />&lt;/div>
+          </code>
+        </div>
+      </div>
+      <div class="result-block">
+        <h3>flex-start</h3>
+        <div class="container flex-start">
+          <div class="item">1</div>
+          <div class="item tall">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>flex-end</h3>
+        <div class="container flex-end">
+          <div class="item">1</div>
+          <div class="item tall">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>center</h3>
+        <div class="container center">
+          <div class="item">1</div>
+          <div class="item tall">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>stretch (default)</h3>
+        <div class="container stretch">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+
+        <h3>baseline</h3>
+        <div class="container baseline">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flex Wrap -->
+    <div id="flex-wrap" class="example-block">
+      <h2>4. Flex Wrap</h2>
+      <div class="code-container">
+        <div class="code-block">
+          <div class="code-label">CSS</div>
+          <code>
+            .container {
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;flex-wrap: nowrap | wrap |
+            wrap-reverse; <br />}
+          </code>
+        </div>
+        <div class="code-block">
+          <div class="code-label">HTML</div>
+          <code>
+            &lt;div class="container">
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">1&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">2&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">3&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">4&lt;/div>
+            <br />&lt;/div>
+          </code>
+        </div>
+      </div>
+      <div class="result-block">
+        <h3>nowrap (default)</h3>
+        <div class="container nowrap">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+        </div>
+
+        <h3>wrap</h3>
+        <div class="container wrap">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+        </div>
+
+        <h3>wrap-reverse</h3>
+        <div class="container wrap-reverse">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Align Content -->
+    <div id="align-content" class="example-block">
+      <h2>5. Align Content</h2>
+      <div class="code-container">
+        <div class="code-block">
+          <div class="code-label">CSS</div>
+          <code>
+            .container {
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;flex-wrap: wrap;
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;align-content: flex-start | flex-end |
+            center | space-between | space-around; <br />}
+          </code>
+        </div>
+        <div class="code-block">
+          <div class="code-label">HTML</div>
+          <code>
+            &lt;div class="container">
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">1&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">2&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">3&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">4&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">5&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item">6&lt;/div>
+            <br />&lt;/div>
+          </code>
+        </div>
+      </div>
+      <div class="result-block">
+        <h3>flex-start</h3>
+        <div class="container flex-start">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+          <div class="item">5</div>
+          <div class="item">6</div>
+        </div>
+
+        <h3>flex-end</h3>
+        <div class="container flex-end">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+          <div class="item">5</div>
+          <div class="item">6</div>
+        </div>
+
+        <h3>center</h3>
+        <div class="container center">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+          <div class="item">5</div>
+          <div class="item">6</div>
+        </div>
+
+        <h3>space-between</h3>
+        <div class="container space-between">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+          <div class="item">5</div>
+          <div class="item">6</div>
+        </div>
+
+        <h3>space-around</h3>
+        <div class="container space-around">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+          <div class="item">4</div>
+          <div class="item">5</div>
+          <div class="item">6</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flex Grow -->
+    <div id="flex-grow" class="example-block">
+      <h2>6. Flex Grow</h2>
+      <div class="code-container">
+        <div class="code-block">
+          <div class="code-label">CSS</div>
+          <code>
+            .item {
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;flex-grow: 0 | 1 | 2 | 3; <br />}
+          </code>
+        </div>
+        <div class="code-block">
+          <div class="code-label">HTML</div>
+          <code>
+            &lt;div class="container">
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item grow-1">1&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item grow-2">2&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item grow-3">3&lt;/div>
+            <br />&lt;/div>
+          </code>
+        </div>
+      </div>
+      <div class="result-block">
+        <div class="container">
+          <div class="item grow-1">1 (flex-grow: 1)</div>
+          <div class="item grow-2">2 (flex-grow: 2)</div>
+          <div class="item grow-3">3 (flex-grow: 3)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flex Shrink -->
+    <div id="flex-shrink" class="example-block">
+      <h2>7. Flex Shrink</h2>
+      <div class="code-container">
+        <div class="code-block">
+          <div class="code-label">CSS</div>
+          <code>
+            .item {
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;flex-shrink: 0 | 1 | 2;
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;width: 200px; <br />}
+          </code>
+        </div>
+        <div class="code-block">
+          <div class="code-label">HTML</div>
+          <code>
+            &lt;div class="container">
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item
+            shrink-0">0&lt;/div> <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+            class="item shrink-1">1&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item
+            shrink-2">2&lt;/div> <br />&lt;/div>
+          </code>
+        </div>
+      </div>
+      <div class="result-block">
+        <div class="container">
+          <div class="item shrink-0">No shrink</div>
+          <div class="item shrink-1">Shrink: 1</div>
+          <div class="item shrink-2">Shrink: 2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order -->
+    <div id="order" class="example-block">
+      <h2>8. Order</h2>
+      <div class="code-container">
+        <div class="code-block">
+          <div class="code-label">CSS</div>
+          <code>
+            .item {
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;order: 1 | 2 | 3; <br />}
+          </code>
+        </div>
+        <div class="code-block">
+          <div class="code-label">HTML</div>
+          <code>
+            &lt;div class="container">
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item
+            order-3">3&lt;/div> <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+            class="item order-1">1&lt;/div>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="item
+            order-2">2&lt;/div> <br />&lt;/div>
+          </code>
+        </div>
+      </div>
+      <div class="result-block">
+        <div class="container">
+          <div class="item order-3">Last (order: 3)</div>
+          <div class="item order-1">First (order: 1)</div>
+          <div class="item order-2">Middle (order: 2)</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
