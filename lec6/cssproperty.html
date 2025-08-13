@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function over() {
+            var titleObject = document.getElementById("pageTitle");
+            titleObject.style.fontSize = "20px";
+        }
+        function out() {
+            var titleObject = document.getElementById("pageTitle");
+            titleObject.style.fontSize = "16px";
+        }
+    </script>
+</head>
+
+<body>
+    <div id="pageTitle" onmouseover="over()" onmouseout="out()">Welcome</div>
+</body>
+
+</html>

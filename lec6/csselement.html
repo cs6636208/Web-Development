@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <style>
+        .style1 {
+            font-size: 20px;
+            color: blue;
+
+        }
+
+        .style2 {
+            font-size: 16px;
+            color: black;
+
+        }
+    </style>
+    <script>
+        function over() {
+
+            var titleObject = document.getElementById("pageTitle");
+            titleObject.className = "style1";
+
+        }
+        function out() {
+
+            var titleObject = document.getElementById("pageTitle");
+            titleObject.className = "style2";
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="pageTitle" onmouseover="over()" onmouseout="out()">Welcome</div>
+</body>
+
+</html>

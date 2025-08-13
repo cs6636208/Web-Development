@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        // function add() {
+        //     // Get input values
+        //     let name = document.getElementById("name").value;
+        //     let address = document.getElementById("address").value;
+        //     let phone = document.getElementById("phone").value;
+
+        //     // Basic validation
+        //     if (name === "" || address === "" || phone === "") {
+        //         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+        //         return;
+        //     }
+
+        //     // Create new table row
+        //     let row = document.createElement("tr");
+
+        //     // Create and append cells
+        //     let cell1 = document.createElement("td");
+        //     cell1.innerHTML = name;
+        //     row.appendChild(cell1);
+
+        //     let cell2 = document.createElement("td");
+        //     cell2.innerHTML = address;
+        //     row.appendChild(cell2);
+
+        //     let cell3 = document.createElement("td");
+        //     cell3.innerHTML = phone;
+        //     row.appendChild(cell3);
+
+        //     // Append row to the table
+        //     document.getElementById("tb").appendChild(row);
+
+        //     // Clear form fields
+        //     document.getElementById("name").value = "";
+        //     document.getElementById("address").value = "";
+        //     document.getElementById("phone").value = "";
+        // }
+        function add() {
+            let atable = document.getElementById("tb");
+
+            let atr = document.createElement("tr")
+            let nametd = document.createElement("td");
+            let addrtd = document.createElement("td");
+            let teltd = document.createElement("td");
+
+            nametd.innerHTML = document.getElementById("name").value;
+            addrtd.innerHTML = document.getElementById("address").value;
+            teltd.innerHTML = document.getElementById("phone").value;
+
+            atr.appendChild(nametd);
+            atr.appendChild(addrtd);
+            atr.appendChild(teltd);
+
+            atable.appendChild(atr);
+        }
+    </script>
+</head>
+
+<body>
+    ชื่อลูกค้า : <input type="text" id="name"><br>
+    ที่อยู่ : <input type="text" id="address"><br>
+    โทรศัพท์ : <input type="text" id="phone"><br>
+    <input type="button" value="เพิ่ม" onclick="add()"><br><br>
+    <table border="1" id="tb">
+        <th>ชื่อลูกค้า</th>
+        <th>ที่อยู่</th>
+        <th>โทรศัพท์</th>
+    </table>
+</body>
+
+</html>
