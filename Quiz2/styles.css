@@ -1,0 +1,92 @@
+/* ตั้งค่าพื้นฐานให้ html และ body */
+/* Media Query สำหรับ Mobile (จอเล็กน้อยกว่า 600px) */
+html,
+body {
+  margin: 0; /* ลบ margin เริ่มต้นของ browser */
+  padding: 0; /* ลบ padding เริ่มต้นของ browser */
+  height: 100%; /* ให้สูงเต็มหน้าจอ */
+}
+
+/* กำหนด layout หลักเป็น flex container */
+.wrapper {
+  display: flex; /* ใช้ flexbox จัด layout */
+  flex-flow: row wrap; /* เรียงเป็นแถว และให้ wrap ลงบรรทัดใหม่ถ้าเต็ม */
+  text-align: center; /* จัดข้อความตรงกลาง */
+  width: 100%; /* กว้างเต็มหน้าจอ */
+  align-items: stretch; /* ยืดแต่ละ child ให้สูงเท่ากัน */
+}
+
+/* ทุก element ที่อยู่ใน wrapper */
+.wrapper > * {
+  padding: 3.15rem; /* เว้นระยะด้านใน */
+  flex: 1 100%; /* ค่า flex: ขยายได้ และกินพื้นที่เต็มแถว */
+}
+
+/* ส่วนหัวของเว็บ */
+.header {
+  background: #ff6666; /* พื้นหลังสีแดงอ่อน */
+  min-height: 60px; /* กำหนดความสูงขั้นต่ำ */
+  padding: 1rem; /* เว้นระยะด้านใน */
+}
+
+/* ส่วนท้ายของเว็บ */
+.footer {
+  background: #66ccff; /* พื้นหลังสีน้ำเงินอ่อน */
+  min-height: 50px; /* ความสูงขั้นต่ำ */
+  padding: 1rem;
+}
+
+/* ส่วนเนื้อหาหลัก */
+.main {
+  text-align: center;
+  background: #ffffff; /* พื้นหลังสีขาว */
+}
+
+/* คอลัมน์ด้านซ้าย */
+.left {
+  background: #ffcc66; /* พื้นหลังสีเหลืองอ่อน */
+}
+
+/* คอลัมน์ด้านขวา */
+.right {
+  background: #99ff99; /* พื้นหลังสีเขียวอ่อน */
+}
+
+/* ---------- Media Query สำหรับ Desktop (จอใหญ่ตั้งแต่ 800px ขึ้นไป) ---------- */
+@media all and (min-width: 800px) {
+  .main {
+    flex: 3; /* main กินพื้นที่กว้างสุด (3 เท่า) */
+    order: 2; /* แสดงเป็นลำดับที่ 2 */
+    min-height: 403px; /* ความสูงขั้นต่ำ */
+  }
+  .left {
+    order: 1; /* แสดงเป็นลำดับแรก (ซ้าย) */
+    min-height: 403px;
+  }
+  .right {
+    order: 3; /* แสดงเป็นลำดับที่ 3 (ขวา) */
+    min-height: 403px;
+  }
+  .footer {
+    order: 4; /* footer ไปอยู่ล่างสุด */
+  }
+}
+
+/* ---------- Media Query สำหรับ Tablet (จอกลางตั้งแต่ 600px ขึ้นไป) ---------- */
+@media all and (min-width: 600px) {
+  .aside {
+    flex: 1; /* aside (เช่น left/right) กินพื้นที่เท่ากัน */
+  }
+  .left {
+    height: 151px; /* ความสูง fix */
+    align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง (ถ้าเป็น flex container ภายใน) */
+  }
+  .right {
+    height: 151px;
+    align-items: center;
+  }
+  .main {
+    height: 151px;
+    align-items: center;
+  }
+}

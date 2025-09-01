@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <title>quiz2no3-1.html</title>
+    <style>
+      input:invalid {
+        border: 2px solid red;
+        background-color: #ffe5e5;
+        color: red;
+      }
+      input:valid {
+        border: 2px solid green;
+        background-color: #e5ffe5;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>กรอกรหัสนักศึกษา</h2>
+    <form>
+      <label for="studentId">รหัสนักศึกษา:</label>
+      <input
+        type="text"
+        id="studentId"
+        name="studentId"
+        pattern="^(65|66|67|68)-\d{6}-\d{4}-\d{1}$"
+        required
+        title="กรุณากรอกรหัสนักศึกษา เช่น 66-040626-2133-9 (รับเฉพาะปี 65-68)"
+      />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <title>quiz2no2</title>
+    <style>
+      input:invalid {
+        border: 2px solid red;
+        background-color: #ffe5e5;
+        color: red;
+      }
+      input:valid {
+        border: 2px solid green;
+        background-color: #e5ffe5;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>กรอกรหัสนักศึกษา</h2>
+
+    <form id="studentForm">
+      <label for="studentId">รหัสนักศึกษา:</label>
+      <input
+        type="text"
+        id="studentId"
+        name="studentId"
+        pattern="^(65|66|67|68)-\d{6}-\d{4}-\d{1}$"
+        required
+        title="กรุณากรอกรหัสนักศึกษา เช่น 66-040626-2133-9 (รับเฉพาะปี 65-68)"
+      />
+      <button type="submit">บันทึก</button>
+    </form>
+
+    <!-- ตำแหน่งที่จะใส่ Order List -->
+    <div id="result"></div>
+
+    <script>
+      const form = document.getElementById("studentForm");
+      const input = document.getElementById("studentId");
+      const resultDiv = document.getElementById("result");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault(); // ป้องกันไม่ให้ฟอร์มรีเฟรชหน้า
+
+        if (input.checkValidity()) {
+          // ถ้า valid ให้แสดงข้อมูลใน OL
+          let ol = resultDiv.querySelector("ol");
+          if (!ol) {
+            ol = document.createElement("ol");
+            resultDiv.appendChild(ol);
+          }
+
+          const li = document.createElement("li");
+          li.textContent = input.value;
+          ol.appendChild(li);
+
+          input.value = ""; // เคลียร์ค่า input หลังกรอก
+        } else {
+          alert("กรุณากรอกรหัสนักศึกษาให้ถูกต้องตามรูปแบบ!");
+        }
+      });
+    </script>
+  </body>
+</html>
